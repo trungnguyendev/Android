@@ -17,9 +17,7 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         bin = DataBindingUtil.setContentView(SecondActivity.this,R.layout.activity_second);
-        Bundle data = getIntent().getExtras();
-        String ms = data.getString(Constant.EXTRA_DATA);
-        bin.editMessage.setText(ms);
+
 
         bin.buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override

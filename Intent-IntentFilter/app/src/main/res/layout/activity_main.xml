@@ -13,35 +13,27 @@
             android:orientation="vertical">
 
             <EditText
+                android:hint="message"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:layout_marginTop="6dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:id="@+id/edit_message" />
 
-            <Button
-                android:id="@+id/button_start_activity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Start Acivity" />
-            <Button
-                android:id="@+id/button_share_data"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Share" />
             <ImageView
+                android:layout_marginTop="6dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/image_pick"
                 android:adjustViewBounds="false" />
 
-            <Button
-                android:text="Select Image"
+            <ListView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/button_select_image" />
+                android:layout_height="match_parent"
+                android:id="@+id/list_intent" />
 
         </LinearLayout>
     </android.support.constraint.ConstraintLayout>
