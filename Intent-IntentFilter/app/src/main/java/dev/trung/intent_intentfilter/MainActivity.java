@@ -1,5 +1,6 @@
 package dev.trung.intent_intentfilter;
 
+import android.app.SearchManager;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
@@ -30,54 +31,83 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE = 10;
     private ActivityMainBinding binding;
     private Intent intent;
-    private String message;
+    private boolean mIsStartActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         binding = DataBindingUtil.setContentView(MainActivity.this, R.layout.activity_main);
-        message = binding.editMessage.getText().toString().trim();
-        final ListAdapter ad =new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.intents));
+        final ListAdapter ad = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.intents));
         binding.listIntent.setAdapter(ad);
         binding.listIntent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                switch (i){
+                switch (i) {
+                    //start activity
                     case 0:
-                        intent = new Intent(MainActivity.this,SecondActivity.class);
-                        intent.putExtra(Constant.EXTRA_DATA,message);
+                        intent = new Intent(MainActivity.this, SecondActivity.class);
+                        intent.putExtra(Constant.EXTRA_DATA, binding.editMessage.getText().toString().trim());
                         startActivity(intent);
                         break;
+                    //share data
                     case 1:
                         intent = new Intent();
                         intent.setAction(Intent.ACTION_SEND);
                         intent.setType("text/plain");
-                        intent.putExtra(Intent.EXTRA_TEXT,message);
+                        intent.putExtra(Intent.EXTRA_TEXT, binding.editMessage.getText().toString().trim());
                         startActivity(intent);
                         break;
+                    // open Browser
                     case 2:
-                        ToastUtil.Toast(MainActivity.this,String.valueOf(i));
+                        intent = new Intent(Intent.ACTION_WEB_SEARCH);
+                        intent.putExtra(SearchManager.QUERY, Uri.parse(binding.editMessage.getText().toString().trim()));
+                        startActivity(intent);
                         break;
+                    //call someone
                     case 3:
-                        ToastUtil.Toast(MainActivity.this,String.valueOf(i));
+                        intent = new Intent(Intent.ACTION_CALL);
+                        intent.setData(Uri.parse("tel:" + binding.editMessage.getText().toString().trim()));
+                        try {
+                            startActivity(intent);
+                        } catch (Exception e) {
+                            LogUtil.d(e);
+                        }
                         break;
+                    //dial
                     case 4:
-                        ToastUtil.Toast(MainActivity.this,String.valueOf(i));
+                        intent = new Intent(Intent.ACTION_DIAL,
+                                Uri.parse("tel:" + binding.editMessage.getText().toString().trim()));
+                        startActivity(intent);
                         break;
+                    //show map
                     case 5:
-                        ToastUtil.Toast(MainActivity.this,String.valueOf(i));
+                        intent = new Intent(Intent.ACTION_VIEW,
+                                Uri.parse("geo:50.123,7.1434?z=19"));
+                        startActivity(intent);
                         break;
+                    //Search on Map
                     case 6:
-                        ToastUtil.Toast(MainActivity.this,String.valueOf(i));
+                        intent = new Intent(Intent.ACTION_VIEW,
+                                Uri.parse("geo:0,0?q="+binding.editMessage.getText().toString().trim()));
+                        startActivity(intent);
                         break;
+                    //Take picture
                     case 7:
-                        ToastUtil.Toast(MainActivity.this,String.valueOf(i));
+                        intent = new Intent(Intent.ACTION_GET_CONTENT);
+                        intent.setType("image/*");
+                        startActivityForResult(intent,REQUEST_CODE);
                         break;
+                    //
                     case 8:
-                        ToastUtil.Toast(MainActivity.this,String.valueOf(i));
+                        intent = new Intent(Intent.ACTION_VIEW,
+                                Uri.parse("content://contacts/people/"));
+                        startActivity(intent);
                         break;
                     case 9:
-                        ToastUtil.Toast(MainActivity.this,String.valueOf(i));
+                        intent = new Intent(Intent.ACTION_EDIT,
+                                Uri.parse("content://contacts/people/1"));
+                        startActivity(intent);
                         break;
                 }
             }
@@ -129,8 +159,8 @@ public class MainActivity extends AppCompatActivity {
                     binding.imagePick.setImageBitmap(bm);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
-                }finally {
-                    if (stream !=null){
+                } finally {
+                    if (stream != null) {
                         try {
                             stream.close();
                         } catch (IOException e) {

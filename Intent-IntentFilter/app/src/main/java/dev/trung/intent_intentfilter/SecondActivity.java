@@ -9,22 +9,26 @@ import android.view.View;
 import dev.trung.intent_intentfilter.databinding.ActivitySecondBinding;
 import dev.trung.intent_intentfilter.util.Constant;
 import dev.trung.intent_intentfilter.util.LogUtil;
+import dev.trung.intent_intentfilter.util.ToastUtil;
 
 public class SecondActivity extends AppCompatActivity {
-    private ActivitySecondBinding bin;
+    private ActivitySecondBinding mbinding;
+    private String mMessage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-        bin = DataBindingUtil.setContentView(SecondActivity.this,R.layout.activity_second);
-
-
-        bin.buttonSend.setOnClickListener(new View.OnClickListener() {
+        mbinding = DataBindingUtil.setContentView(SecondActivity.this, R.layout.activity_second);
+        Bundle dataIntent = getIntent().getExtras();
+        if (dataIntent != null)
+            mMessage = dataIntent.getString(Constant.EXTRA_DATA);
+        mbinding.editMessage.setText(mMessage);
+        ToastUtil.Toast(SecondActivity.this,mMessage);
+        mbinding.buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent in = new Intent();
-                in.putExtra(Constant.EXTRA_RETURN,bin.editMessage.getText().toString().trim());
-                setResult(RESULT_OK,in);
+
                 SecondActivity.this.finish();
             }
         });
