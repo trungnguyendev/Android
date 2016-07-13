@@ -1,2 +1,1 @@
-# Android
-#Is a programmer .NET come back Android programming (:,)
+Is a programmer .NET come back Android programming (:,)
