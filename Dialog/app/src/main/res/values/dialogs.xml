@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="dialogs">
+        <item>AlerDialog</item>
+        <item>ProgressDialog</item>
+        <item>DatePickerDialog</item>
+        <item>TimePickerDialog</item>
+    </string-array>
+</resources>
