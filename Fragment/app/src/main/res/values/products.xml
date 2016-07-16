@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="products">
+        <item>Android</item>
+        <item>iOS</item>
+        <item>XML</item>
+        <item>HTML</item>
+        <item>CSS</item>
+        <item>Java</item>
+        <item>JavaScript</item>
+        <item>Php</item>
+        <item>nodeJs</item>
+        <item>ASP.NET</item>
+        <item>C#</item>
+        <item>C/C++</item>
+    </string-array>
+</resources>
