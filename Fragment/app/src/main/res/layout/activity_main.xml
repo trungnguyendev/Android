@@ -8,20 +8,10 @@
         android:layout_height="match_parent"
         tools:context="dev.trung.fragment.MainActivity">
 
-        <LinearLayout
+        <FrameLayout
+            android:id="@+id/fragment_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent" />
 
-            <FrameLayout
-                android:id="@+id/fragment_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <FrameLayout
-                android:id="@+id/fragment_detail"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="gone" />
-        </LinearLayout>
     </android.support.constraint.ConstraintLayout>
 </layout>

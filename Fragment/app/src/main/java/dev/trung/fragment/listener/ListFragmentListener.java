@@ -5,5 +5,5 @@ package dev.trung.fragment.listener;
  */
 
 public interface ListFragmentListener {
-    void onItemClickListen(String value);
+    void onItemClickListen(Object obj);
 }
