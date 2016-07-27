@@ -102,8 +102,9 @@ public class OperationBookFragment extends Fragment {
                 Bundle args = getArguments();
                 if (args != null && args.getInt(ARG_ROWID) != -1) {
                     updateBook();
+                } else {
+                    addBook();
                 }
-                addBook();
             }
         });
     }
