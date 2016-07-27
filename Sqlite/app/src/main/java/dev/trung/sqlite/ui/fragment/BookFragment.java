@@ -60,11 +60,13 @@ public class BookFragment extends Fragment implements OperationBookListener {
     @Override
     public void onStart() {
         super.onStart();
-        mBookAdapter = new BookAdapter(mBookList, R.layout.card_book_item, getContext(), mFragmentManager, this);
-        mBinding.recyclerBook.setHasFixedSize(true);
-        RecyclerView.LayoutManager manager = new GridLayoutManager(getContext(), 2);
-        mBinding.recyclerBook.setLayoutManager(manager);
-        mBinding.recyclerBook.setAdapter(mBookAdapter);
+        if (mBookList != null) {
+            mBookAdapter = new BookAdapter(mBookList, R.layout.card_book_item, getContext(), mFragmentManager, this);
+            mBinding.recyclerBook.setHasFixedSize(true);
+            RecyclerView.LayoutManager manager = new GridLayoutManager(getContext(), 2);
+            mBinding.recyclerBook.setLayoutManager(manager);
+            mBinding.recyclerBook.setAdapter(mBookAdapter);
+        }
     }
 
     @Override

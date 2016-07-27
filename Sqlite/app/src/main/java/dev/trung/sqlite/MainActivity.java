@@ -80,13 +80,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void updateBook(int rowId) {
         mOperationBookFragment = OperationBookFragment.newInstance(rowId);
-        if (!mOperationBookFragment.isAdded()) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, mOperationBookFragment, Constant.TAG_OPERATION_FRAGMENT)
-                    .addToBackStack(null)
-                    .commit();
-        }
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, mOperationBookFragment, Constant.TAG_OPERATION_FRAGMENT)
+                .addToBackStack(null)
+                .commit();
         mBinding.fabBook.setVisibility(View.GONE);
         mActionBar.setTitle(R.string.update_book_title);
     }

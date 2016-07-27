@@ -13,6 +13,9 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 
+import org.abego.treelayout.internal.util.java.lang.string.StringUtil;
+import org.apache.commons.codec.binary.StringUtils;
+
 import java.io.ByteArrayOutputStream;
 
 import dev.trung.sqlite.R;
@@ -20,6 +23,7 @@ import dev.trung.sqlite.dao.DbHelper;
 import dev.trung.sqlite.databinding.FragmentBookBinding;
 import dev.trung.sqlite.databinding.FragmentOperationBookBinding;
 import dev.trung.sqlite.model.Book;
+import dev.trung.sqlite.util.ToastUtil;
 
 /**
  * Created by trungnv on 7/23/2016.
@@ -74,8 +78,10 @@ public class OperationBookFragment extends Fragment {
         book.setContent(mBinding.textContent.getText().toString().trim());
         book.setAuthor(mBinding.textAuthor.getText().toString().trim());
         book.setImage(R.drawable.album2);
-        if (book != null)
-            mDbHelper.insert(book);
+        if (book != null) {
+            long id = mDbHelper.insert(book);
+            ToastUtil.Toast(getContext(), "Insert Done!");
+        }
     }
 
     @Override
@@ -110,7 +116,9 @@ public class OperationBookFragment extends Fragment {
         book.setAuthor(mBinding.textAuthor.getText().toString().trim());
         book.setImage(R.drawable.album2);
 
-        if (book != null)
-            mDbHelper.update(book);
+        if (book != null) {
+            int i = mDbHelper.update(book);
+            ToastUtil.Toast(getContext(), "Update Done!");
+        }
     }
 }

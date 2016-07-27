@@ -63,16 +63,17 @@ public class DbHelper extends SQLiteOpenHelper {
                 Entry.Book.COLUMNS_RETURN,
                 null, null, null, null, null
         );
-        c.moveToFirst();
-        do {
-            Book book = new Book();
-            book.setId(c.getInt(c.getColumnIndex(Entry.Book.COLUMN_ID)));
-            book.setTitle(c.getString(c.getColumnIndex(Entry.Book.COLUMN_TITLE)));
-            book.setImage(c.getInt(c.getColumnIndex(Entry.Book.COLUMN_IMAGE)));
-            book.setContent(c.getString(c.getColumnIndex(Entry.Book.COLUMN_CONTENT)));
-            book.setAuthor(c.getString(c.getColumnIndex(Entry.Book.COLUMN_AUTHOR)));
-            books.add(book);
-        } while (c.moveToNext());
+        if (c.moveToFirst()) {
+            do {
+                Book book = new Book();
+                book.setId(c.getInt(c.getColumnIndex(Entry.Book.COLUMN_ID)));
+                book.setTitle(c.getString(c.getColumnIndex(Entry.Book.COLUMN_TITLE)));
+                book.setImage(c.getInt(c.getColumnIndex(Entry.Book.COLUMN_IMAGE)));
+                book.setContent(c.getString(c.getColumnIndex(Entry.Book.COLUMN_CONTENT)));
+                book.setAuthor(c.getString(c.getColumnIndex(Entry.Book.COLUMN_AUTHOR)));
+                books.add(book);
+            } while (c.moveToNext());
+        }
         return books;
     }
 
