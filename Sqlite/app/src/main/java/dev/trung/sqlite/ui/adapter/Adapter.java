@@ -35,6 +35,14 @@ public abstract class Adapter<T, VH extends ViewHolder> extends RecyclerView.Ada
         return mList.get(position);
     }
 
+    public boolean removeItem(int position) {
+        if (mList.remove(getItem(position))) {
+            this.notifyDataSetChanged();
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public int getItemViewType(int position) {
         return mModelLayout;

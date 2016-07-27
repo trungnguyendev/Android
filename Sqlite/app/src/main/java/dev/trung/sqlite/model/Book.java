@@ -64,4 +64,24 @@ public class Book {
     public void setAuthor(String author) {
         this.author = author;
     }
+
+    @Override
+    public String toString() {
+        return new StringBuilder()
+                .append("Book{")
+                .append("id=")
+                .append(id)
+                .append(", title='")
+                .append(title)
+                .append('\'')
+                .append(", image=")
+                .append(image)
+                .append(", content='")
+                .append(content)
+                .append('\'')
+                .append(", author='")
+                .append(author)
+                .append('\'')
+                .append('}').toString();
+    }
 }

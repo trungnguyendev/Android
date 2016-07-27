@@ -16,6 +16,7 @@ import dev.trung.sqlite.model.Book;
  */
 
 public class DbHelper extends SQLiteOpenHelper {
+
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "book.db";
 
@@ -99,5 +100,27 @@ public class DbHelper extends SQLiteOpenHelper {
                 selection,
                 selectionArgs);
         return i;
+    }
+
+    public Book getById(int rowId) {
+        Book book = new Book();
+//        SQLiteDatabase db = this.getReadableDatabase();
+        String selection = Entry.Book.COLUMN_ID + " +?";
+        String[] selectionArgs = {String.valueOf(rowId)};
+//        Cursor c = db.query(
+//                Entry.Book.TABLE_NAME,
+//                Entry.Book.COLUMNS_RETURN,
+//                selection, selectionArgs, null, null, null
+//        );
+        Cursor c = this.getReadableDatabase()
+                .rawQuery("select * from books where id = ?", new String[]{String.valueOf(rowId)});
+        if (c.moveToFirst()) {
+            book.setId(c.getInt(c.getColumnIndex(Entry.Book.COLUMN_ID)));
+            book.setTitle(c.getString(c.getColumnIndex(Entry.Book.COLUMN_TITLE)));
+            book.setImage(c.getInt(c.getColumnIndex(Entry.Book.COLUMN_IMAGE)));
+            book.setContent(c.getString(c.getColumnIndex(Entry.Book.COLUMN_CONTENT)));
+            book.setAuthor(c.getString(c.getColumnIndex(Entry.Book.COLUMN_AUTHOR)));
+        }
+        return book;
     }
 }

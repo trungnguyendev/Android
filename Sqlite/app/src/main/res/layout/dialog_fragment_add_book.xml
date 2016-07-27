@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/edt_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="11dp"
+            android:ems="10"
+            android:hint="Tên sách"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/edt_name_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/edt_name"
+            android:layout_alignStart="@+id/edt_name"
+            android:layout_below="@+id/edt_name"
+            android:layout_marginTop="33dp"
+            android:ems="10"
+            android:hint="Tên tác giả"
+            android:inputType="textPersonName" />
+
+        <ImageView
+            android:id="@+id/image_book"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignLeft="@+id/edt_name_author"
+            android:layout_alignStart="@+id/edt_name_author"
+            android:layout_below="@+id/edt_name_author"
+            android:layout_marginTop="40dp"
+            app:srcCompat="@drawable/album1" />
+
+        <Button
+            android:id="@+id/btn_add_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/edt_name_author"
+            android:layout_alignRight="@+id/edt_name_author"
+            android:layout_alignTop="@+id/image_book"
+            android:text="Add Image" />
+
+        <Button
+            android:id="@+id/btn_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/btn_add_image"
+            android:layout_alignRight="@+id/btn_add_image"
+            android:layout_below="@+id/image_book"
+            android:layout_marginTop="31dp"
+            android:elevation="0dp"
+            android:text="Ok" />
+    </RelativeLayout>
+</layout>
