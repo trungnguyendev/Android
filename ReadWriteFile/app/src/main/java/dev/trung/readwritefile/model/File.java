@@ -7,6 +7,9 @@ public class File {
     private String nameFile;
     private String uri;
 
+    public File() {
+    }
+
     public File(String nameFile, String uri) {
         this.nameFile = nameFile;
         this.uri = uri;

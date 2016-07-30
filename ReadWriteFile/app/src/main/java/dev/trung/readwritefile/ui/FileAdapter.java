@@ -5,12 +5,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.List;
 
 import dev.trung.readwritefile.R;
 import dev.trung.readwritefile.databinding.FilesItemLayoutBinding;
 import dev.trung.readwritefile.model.File;
+import dev.trung.readwritefile.util.LogUtil;
 
 /**
  * Created by trungnv on 7/29/2016.
@@ -20,6 +22,8 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.FileHolder> {
 
     public interface OnClickItemListener {
         void onClickItem(File file);
+
+        void onClickEditItem(File file);
     }
 
     private List<File> mFiles;
@@ -43,7 +47,14 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.FileHolder> {
         holder.getBinding().imgFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                LogUtil.d("click!");
                 listener.onClickItem(file);
+            }
+        });
+        holder.getBinding().txtNameFile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onClickEditItem(file);
             }
         });
     }

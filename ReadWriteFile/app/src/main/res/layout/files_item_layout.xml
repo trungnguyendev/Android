@@ -3,26 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/activity_main"
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
 
         <ImageView
             android:id="@+id/img_file"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@mipmap/ic_file"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="4dp" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            app:srcCompat="@mipmap/ic_file" />
 
         <TextView
             android:id="@+id/txt_nameFile"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_toEndOf="@+id/img_file"
+            android:layout_toRightOf="@+id/img_file"
             android:text="TextView"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            tools:layout_editor_absoluteX="96dp"
-            tools:layout_editor_absoluteY="16dp" />
-    </android.support.constraint.ConstraintLayout>
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+    </RelativeLayout>
+
+
 </layout>
