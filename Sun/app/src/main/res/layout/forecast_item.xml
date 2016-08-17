@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/txt_time"
+            android:layout_columnSpan="2"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:gravity="center_horizontal"
+            android:text="05:00 PM"
+            android:textSize="3mm" />
+
+        <android.support.v4.widget.Space
+            android:layout_height="16dp"
+            android:layout_columnSpan="2"
+            android:layout_columnWeight="1" />
+
+        <TextView
+            android:id="@+id/txt_dayOfWeek"
+            android:layout_columnSpan="2"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:gravity="center_horizontal"
+            android:text="Thứ 4"
+            android:textSize="3mm" />
+
+        <android.support.v4.widget.Space
+            android:layout_height="16dp"
+            android:layout_columnSpan="2"
+            android:layout_columnWeight="1" />
+
+        <ImageView
+            android:id="@+id/img_icon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_columnSpan="2"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:gravity="center_horizontal"
+            android:src="@drawable/rain" />
+
+        <android.support.v4.widget.Space
+            android:layout_height="8dp"
+            android:layout_columnSpan="2"
+            android:layout_columnWeight="1" />
+
+        <TextView
+            android:id="@+id/txt_high"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:gravity="right"
+            android:paddingRight="8dp"
+            android:text="33"
+            android:textSize="3mm"
+            android:textStyle="normal|bold" />
+
+        <TextView
+            android:id="@+id/txt_low"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:gravity="left"
+            android:paddingLeft="8dp"
+            android:text="16"
+            android:textSize="3mm" />
+    </GridLayout>
+</layout>
