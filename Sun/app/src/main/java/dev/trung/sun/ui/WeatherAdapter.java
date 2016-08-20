@@ -22,10 +22,16 @@ import dev.trung.sun.model.SimpleForecastDay;
 public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherHolder> {
     private List<SimpleForecastDay> list;
     private Context mContext;
+    private WeatherOnclickListener listener;
 
-    public WeatherAdapter(List<SimpleForecastDay> list, Context mContext) {
+    public interface WeatherOnclickListener {
+        void OnclickItemListener(SimpleForecastDay m, int p);
+    }
+
+    public WeatherAdapter(List<SimpleForecastDay> list, Context mContext, WeatherOnclickListener listener) {
         this.list = list;
         this.mContext = mContext;
+        this.listener = listener;
     }
 
     @Override
@@ -35,13 +41,19 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherH
     }
 
     @Override
-    public void onBindViewHolder(WeatherHolder holder, int position) {
-        SimpleForecastDay model = getItem(position);
-        holder.mBinding.txtTime.setText(model.getDate().getHour() + ":" + model.getDate().getMin() + " " + model.getDate().getAmpm());
-        holder.mBinding.txtDayOfWeek.setText(model.getDate().getWeekdayShort());
+    public void onBindViewHolder(WeatherHolder holder, final int position) {
+        final SimpleForecastDay model = getItem(position);
         Picasso.with(mContext).load(model.getIconUrl()).into(holder.mBinding.imgIcon);
+        holder.mBinding.txtDayOfWeek.setText(model.getDate().getWeekdayShort());
+        holder.mBinding.txtDay.setText(String.valueOf(model.getDate().getDay()) + " " + String.valueOf(model.getDate().getMonthnameShort()));
         holder.mBinding.txtHigh.setText(String.valueOf(model.getHigh().getCelsius()));
         holder.mBinding.txtLow.setText(String.valueOf(model.getLow().getCelsius()));
+        holder.mBinding.imgIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.OnclickItemListener(model, position);
+            }
+        });
     }
 
     @Override

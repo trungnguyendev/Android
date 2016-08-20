@@ -3,18 +3,9 @@
 
     <GridLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:columnCount="2"
         android:padding="16dp">
-
-        <TextView
-            android:id="@+id/txt_time"
-            android:layout_columnSpan="2"
-            android:layout_columnWeight="1"
-            android:layout_gravity="fill_horizontal"
-            android:gravity="center_horizontal"
-            android:text="05:00 PM"
-            android:textSize="3mm" />
 
         <android.support.v4.widget.Space
             android:layout_height="16dp"
@@ -28,6 +19,20 @@
             android:layout_gravity="fill_horizontal"
             android:gravity="center_horizontal"
             android:text="Thứ 4"
+            android:textSize="3mm" />
+
+        <android.support.v4.widget.Space
+            android:layout_height="8dp"
+            android:layout_columnSpan="2"
+            android:layout_columnWeight="1" />
+
+        <TextView
+            android:id="@+id/txt_day"
+            android:layout_columnSpan="2"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:gravity="center_horizontal"
+            android:text="17 Thg 8"
             android:textSize="3mm" />
 
         <android.support.v4.widget.Space

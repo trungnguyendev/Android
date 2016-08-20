@@ -15,4 +15,7 @@ import retrofit2.http.Query;
 public interface ApiWeather {
     @GET("9c6d3bccd75c99b0/forecast10day/lang:{countryCode}/q/autoip.json")
     Call<Response> loadForecast(@Path("countryCode") String countryCode);
+
+    @GET("9c6d3bccd75c99b0/forecast10day/lang:{countryCode}/q/{lotlat}.json")
+    Call<Response> loadForecastByLocation(@Path("countryCode") String countryCode, @Path("lolat") String lotlat);
 }
