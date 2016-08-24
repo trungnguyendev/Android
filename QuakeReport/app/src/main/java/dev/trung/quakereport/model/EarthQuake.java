@@ -10,6 +10,9 @@ public class EarthQuake {
     private String mTime;
     private String mLocationOffset;
 
+    public EarthQuake() {
+    }
+
     public EarthQuake(String mMagnitude, String mLocationOffset, String mLocationPrimary, String mDate, String mTime) {
         this.mMagnitude = mMagnitude;
         this.mLocationPrimary = mLocationPrimary;

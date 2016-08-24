@@ -3,6 +3,10 @@ package dev.trung.quakereport.util;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,9 +17,12 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import dev.trung.quakereport.R;
+import dev.trung.quakereport.model.EarthQuake;
 
 /**
  * Created by trungnv on 8/23/2016.
@@ -81,57 +88,11 @@ public class Utils {
         try {
             u = new URL(url);
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            LogUtil.e(e.getMessage());
             return null;
         }
         return u;
     }
 
-    public static String makeHttpRequestGET(URL url) {
-        String jsonResponse = "";
-        HttpURLConnection urlConnection = null;
-        InputStream inputStream = null;
 
-        try {
-            urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setRequestMethod("GET");
-            urlConnection.setReadTimeout(10000);
-            urlConnection.setConnectTimeout(15000);
-            urlConnection.connect();
-            inputStream = urlConnection.getInputStream();
-            jsonResponse = readFromStream(inputStream);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (urlConnection != null) {
-                urlConnection.disconnect();
-            }
-            if (inputStream != null) {
-                try {
-                    inputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return jsonResponse;
-    }
-
-    private static String readFromStream(InputStream inputStream) {
-        StringBuilder output = new StringBuilder();
-        if (inputStream != null) {
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, Charset.forName("UTF-8"));
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            try {
-                String line = bufferedReader.readLine();
-                while (line != null) {
-                    output.append(line);
-                    line = bufferedReader.readLine();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return output.toString();
-    }
 }

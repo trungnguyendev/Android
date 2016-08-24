@@ -1,4 +1,4 @@
-package dev.trung.quakereport.ui;
+package dev.trung.quakereport.ui.adapter;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
@@ -24,8 +24,8 @@ import dev.trung.quakereport.util.Utils;
 public class EarthQuakeAdapter extends ArrayAdapter<EarthQuake> {
     private EarthquakeListItemBinding mBinding;
 
-    public EarthQuakeAdapter(Context context, List<EarthQuake> mList) {
-        super(context, 0, mList);
+    public EarthQuakeAdapter(Context context) {
+        super(context, 0);
     }
 
     @NonNull
