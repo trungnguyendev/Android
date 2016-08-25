@@ -39,7 +39,7 @@ public class Utils {
         return timeFormat.format(dateObject);
     }
 
-    public String formatMagnitude(double magnitude) {
+    public static String formatMagnitude(double magnitude) {
         DecimalFormat magnitudeFormat = new DecimalFormat("0.0");
         return magnitudeFormat.format(magnitude);
     }

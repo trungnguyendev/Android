@@ -62,8 +62,8 @@ public class QueryUtil {
                 JSONObject item = array.getJSONObject(i);
                 JSONObject properties = item.getJSONObject("properties");
 
-                String magnitude = properties.getString("mag");
-                String locationPrimary = properties.getString("place");
+                String magnitude = Utils.formatMagnitude(Double.parseDouble(properties.getString("mag")));
+                String locationPrimary = "";
                 String locationOffset = properties.getString("place");
                 Date dt = new Date(properties.getLong("time"));
                 String date = Utils.formatDate(dt);

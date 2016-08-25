@@ -1,8 +1,10 @@
 package dev.trung.quakereport.ui.fragment;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 
 import dev.trung.quakereport.R;
 
@@ -15,6 +17,18 @@ public class EarthquakePreferenceFragment extends PreferenceFragment implements 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.settings_main);
+        Preference magnitude = findPreference(getString(R.string.settings_min_magnitude_key));
+        bindPreferenceSummaryToValue(magnitude);
+        Preference limit = findPreference(getString(R.string.settings_limit_key));
+        bindPreferenceSummaryToValue(limit);
+
+    }
+
+    private void bindPreferenceSummaryToValue(Preference preference) {
+        preference.setOnPreferenceChangeListener(this);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(preference.getContext());
+        String s = sharedPreferences.getString(preference.getKey(), "");
+        onPreferenceChange(preference, s);
     }
 
     @Override
