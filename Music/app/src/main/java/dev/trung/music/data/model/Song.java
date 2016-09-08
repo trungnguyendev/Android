@@ -8,6 +8,11 @@ import android.provider.MediaStore;
  * Created by trungnv on 9/7/2016.
  */
 public class Song {
+    public final static String ID = "ID";
+    public final static String ARTIST = "ARTIST";
+    public final static String TITLE = "TITLE";
+    public final static String ALBUM = "ALBUM";
+    public final static String DURATION = "DURATION";
     private long id;
     private String artist;
     private String title;

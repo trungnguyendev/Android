@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import dev.trung.music.data.model.Song;
@@ -20,6 +21,7 @@ public class MusicRetriever {
 
     public MusicRetriever(ContentResolver mContentResolver) {
         this.mContentResolver = mContentResolver;
+        mSongs = new ArrayList<Song>();
         LogUtil.TAG = MusicRetriever.this.getClass().getName();
     }
 
@@ -50,14 +52,57 @@ public class MusicRetriever {
         int titleColumn = c.getColumnIndex(MediaStore.Audio.Media.TITLE);
         int albumColumn = c.getColumnIndex(MediaStore.Audio.Media.ALBUM);
         int durationColumn = c.getColumnIndex(MediaStore.Audio.Media.DURATION);
+
         LogUtil.i("Title column index: " + String.valueOf(titleColumn));
         LogUtil.i("ID column index: " + String.valueOf(idColumn));
 
-
+        do {
+            mSongs.add(new Song(c.getLong(idColumn),
+                    c.getString(artistColumn),
+                    c.getString(titleColumn),
+                    c.getString(albumColumn),
+                    c.getLong(durationColumn)));
+        } while (c.moveToNext());
+        LogUtil.i("Query data is done , music is ready");
+        LogUtil.i("Number of song is : " + mSongs.size());
     }
 
     public ContentResolver getContentResolver() {
         return mContentResolver;
+    }
+
+    public List<Song> getAll() {
+        return mSongs;
+    }
+
+    public List<String> getAll(String field) {
+        List<String> l = new ArrayList<String>();
+        for (Song s : mSongs) {
+            switch (field) {
+                case Song.ID:
+                    l.add(String.valueOf(s.getId()));
+                    break;
+                case Song.ARTIST:
+                    l.add(s.getArtist());
+                    break;
+                case Song.TITLE:
+                    l.add(s.getTitle());
+                    break;
+                case Song.ALBUM:
+                    l.add(s.getAlbum());
+                    break;
+                case Song.DURATION:
+                    l.add(String.valueOf(s.getDuration()));
+                    break;
+                default:
+            }
+        }
+        LogUtil.i("Method getAllBy field : " + l.size());
+        return l;
+    }
+
+    public int getNumberOfSong() {
+        return mSongs != null ? mSongs.size() : 0;
     }
 }
 
