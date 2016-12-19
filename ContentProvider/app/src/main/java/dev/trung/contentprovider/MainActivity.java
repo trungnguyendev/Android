@@ -24,6 +24,8 @@ import dev.trung.contentprovider.R;
 import dev.trung.contentprovider.databinding.ActivityMainBinding;
 import dev.trung.contentprovider.model.Contact;
 import dev.trung.contentprovider.ui.ContactAdapter;
+import dev.trung.lib.di.DaggerApiComponent;
+import dev.trung.lib.helper.ManagerPreferences;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding mBinding;
@@ -35,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+//        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+//        DaggerApiComponent.builder().apiModule()
         try {
             XmlPullParserFactory xmlPullParserFactory = XmlPullParserFactory.newInstance();
         } catch (XmlPullParserException e) {
